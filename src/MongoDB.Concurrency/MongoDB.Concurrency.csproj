@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<LangVersion>8.0</LangVersion>
-		<Nullable>enable</Nullable>
-		<Authors>Vincent Griebel</Authors>
-		<RepositoryUrl>https://github.com/Anapher/MongoDB.Concurrency</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>MongoDB;Mongo;Database;Transactions;Concurrency;Race Condition;Threading;Lock;Optimistic;Version;Concurrency Token</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Description>MongoDB utilities to apply optimistic concurrency when updating and deleting entities using a version property. </Description>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.11.5" />
-	</ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>8.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <Authors>Vincent Griebel</Authors>
+        <RepositoryUrl>https://github.com/Anapher/MongoDB.Concurrency</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>MongoDB;Mongo;Database;Transactions;Concurrency;Race Condition;Threading;Lock;Optimistic;Version;Concurrency Token</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>MongoDB utilities to apply optimistic concurrency when updating and deleting entities using a version property.</Description>
+        <Version>1.0.0</Version>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+    </ItemGroup>
 </Project>
