@@ -37,7 +37,23 @@ namespace MongoDB.Concurrency.Optimistic
             {
                 parameters = new ConcurrencyParameters<T>(obj, true, _versionSelector);
 
-                var result = await Collection.ReplaceOneAsync(parameters.QueryWithVersion, obj, options, token);
+                ReplaceOneResult? result;
+                try
+                {
+                    result = await Collection.ReplaceOneAsync(parameters.QueryWithVersion, obj, options, token);
+                }
+                catch (MongoWriteException e)
+                {
+                    // if upsert is enabled and the versions do not match, an attempt will be made to insert the new entity
+                    // but as the ids of the entities are equal, this will throw this exception, which is equal to affected rows = 0
+                    if (e.WriteError.Category == ServerErrorCategory.DuplicateKey && options?.IsUpsert == true)
+                        await CheckConcurrencyResult(0, parameters);
+
+                    throw;
+                }
+
+                if (options?.IsUpsert == true && result.UpsertedId != null)
+                    return result;
 
                 await CheckConcurrencyResult(result.ModifiedCount, parameters);
                 return result;

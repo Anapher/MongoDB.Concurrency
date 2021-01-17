@@ -46,7 +46,7 @@ namespace MongoDB.Concurrency.IntegrationTests.Base
             await VerifyDelete(collection, person);
         }
 
-        private async Task<T> VerifyUpdate(IMongoCollection<T> collection, T obj, int sourceVersion)
+        protected async Task<T> VerifyUpdate(IMongoCollection<T> collection, T obj, int sourceVersion)
         {
             var createdObject = await GetCurrentVersionOfObject(collection, obj);
 
